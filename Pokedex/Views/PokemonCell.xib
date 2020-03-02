@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RuesableCell" rowHeight="232" id="KGk-i7-Jjw" customClass="PokemonCell" customModule="Pokedex" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="399" height="232"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="399" height="232"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGV-Mk-yAs">
+                        <rect key="frame" x="10" y="10" width="379" height="120"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="guf-G7-ASe">
+                                <rect key="frame" x="10" y="10" width="359" height="100"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-pa-4uA">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="lZF-7R-N6h"/>
+                                            <constraint firstAttribute="height" constant="100" id="xae-OP-l0l"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="6AY-wQ-lgP">
+                                        <rect key="frame" x="101" y="0.0" width="48.5" height="100"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odd-IL-f3J">
+                                                <rect key="frame" x="0.0" y="0.0" width="48.5" height="38.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlE-Ek-6Vf">
+                                                <rect key="frame" x="0.0" y="78.5" width="48.5" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="HKz-M3-SJ0">
+                                        <rect key="frame" x="150.5" y="0.0" width="208.5" height="100"/>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="Greeen-Grass"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="guf-G7-ASe" secondAttribute="trailing" constant="10" id="DkA-nD-UtJ"/>
+                            <constraint firstItem="guf-G7-ASe" firstAttribute="top" secondItem="mGV-Mk-yAs" secondAttribute="top" constant="10" id="Pqz-4I-I4Y"/>
+                            <constraint firstAttribute="bottom" secondItem="guf-G7-ASe" secondAttribute="bottom" constant="10" id="maT-9g-Zhp"/>
+                            <constraint firstItem="guf-G7-ASe" firstAttribute="leading" secondItem="mGV-Mk-yAs" secondAttribute="leading" constant="10" id="vHv-4t-qta"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mGV-Mk-yAs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="lJE-nz-b3j"/>
+                    <constraint firstAttribute="trailing" secondItem="mGV-Mk-yAs" secondAttribute="trailing" constant="10" id="oM1-pt-9mu"/>
+                    <constraint firstItem="mGV-Mk-yAs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tTq-Df-rjF"/>
+                    <constraint firstAttribute="bottom" secondItem="mGV-Mk-yAs" secondAttribute="bottom" constant="10" id="v4P-Kr-Ua2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="Bubble" destination="mGV-Mk-yAs" id="Tiw-vA-y7j"/>
+                <outlet property="PokemoTypesStackView" destination="HKz-M3-SJ0" id="NCM-OR-rjd"/>
+                <outlet property="PokemonID" destination="rlE-Ek-6Vf" id="DsG-iJ-tew"/>
+                <outlet property="PokemonImage" destination="pWJ-pa-4uA" id="rdd-sc-Td0"/>
+                <outlet property="PokemonName" destination="odd-IL-f3J" id="18z-qn-U9e"/>
+            </connections>
+            <point key="canvasLocation" x="192.0289855072464" y="194.86607142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Greeen-Grass">
+            <color red="0.29803921568627451" green="0.81960784313725488" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
