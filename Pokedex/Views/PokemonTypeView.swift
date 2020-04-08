@@ -35,6 +35,7 @@ class PokemonTypeView: UIView {
     private func commonInit(){
         Bundle.main.loadNibNamed("PokemonTypeView", owner: self, options: nil)
         addSubview(contentView)
+        fillView.layer.cornerRadius = self.frame.height / 3
 //        contentView.frame = self.bounds
 //        contentView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
     }

@@ -15,6 +15,8 @@ struct K {
     static let detalSeque = "LoginToChat"
     static let detailSeques = "ListToDetail"
     
+    static let DetailStoryBoard = "DatailView"
+    
     static let cellIndentifier = "RuesableCell"
     static let cellNibName = "PokemonCell"
     

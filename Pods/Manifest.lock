@@ -2,24 +2,32 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
+  - BetterSegmentedControl (1.3.0)
   - SwiftyJSON (5.0.0)
+  - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.9)
   - AlamofireImage (~> 3.5)
+  - BetterSegmentedControl (~> 1.3)
   - SwiftyJSON
+  - TinyConstraints (~> 4.0.1)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireImage
+    - BetterSegmentedControl
     - SwiftyJSON
+    - TinyConstraints
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  BetterSegmentedControl: 85d1b0343a09603b098884d527f550dfc8e6cdd9
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: a1752b187e9970bbf6870913b10b48abb67336ee
+PODFILE CHECKSUM: b384581b51983a34972739b8e01dde40180ef6bc
 
 COCOAPODS: 1.8.4

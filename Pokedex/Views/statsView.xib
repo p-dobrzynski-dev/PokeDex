@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatsView" customModule="Pokedex" customModuleProvider="target">
+            <connections>
+                <outlet property="attackStatView" destination="aeN-mj-Mqb" id="L8l-1o-iB7"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="oGC-Dt-Psb"/>
+                <outlet property="defenseStatView" destination="h4f-Zo-b7B" id="baz-hT-bpG"/>
+                <outlet property="hpStatView" destination="ab7-kd-dj8" id="OxX-3i-2QE"/>
+                <outlet property="speedAtkStatView" destination="fO3-LX-6mQ" id="ieS-ej-MCd"/>
+                <outlet property="speedDefStatView" destination="1RE-UG-d0s" id="a1i-fI-SxM"/>
+                <outlet property="speedStatView" destination="hno-ks-mNz" id="bJ4-tY-58T"/>
+                <outlet property="totalStatView" destination="gwC-g5-NoC" id="m13-2S-xC6"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="422" height="313"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-id-kaX">
+                    <rect key="frame" x="0.0" y="44" width="422" height="235"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ab7-kd-dj8" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="422" height="16.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeN-mj-Mqb" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="36.5" width="422" height="16.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4f-Zo-b7B" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="73" width="422" height="16.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fO3-LX-6mQ" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="109.5" width="422" height="16"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RE-UG-d0s" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="145.5" width="422" height="16.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hno-ks-mNz" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="182" width="422" height="16.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwC-g5-NoC" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="218.5" width="422" height="16.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="OMo-id-kaX" secondAttribute="trailing" id="9pw-Ex-79r"/>
+                <constraint firstItem="OMo-id-kaX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="PMO-0J-KTM"/>
+                <constraint firstItem="OMo-id-kaX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="s3v-sH-2wt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="OMo-id-kaX" secondAttribute="bottom" id="tvX-LN-zCe"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-46.540178571428569"/>
+        </view>
+    </objects>
+</document>

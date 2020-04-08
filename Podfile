@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '13.0'
+platform :ios, '13.0'
 
 target 'Pokedex' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -9,5 +9,7 @@ target 'Pokedex' do
   pod 'Alamofire', '~> 4.9'
   pod 'AlamofireImage', '~> 3.5'
   pod 'SwiftyJSON'
+  pod 'TinyConstraints', '~> 4.0.1'
+  pod 'BetterSegmentedControl', '~> 1.3'
 
 end

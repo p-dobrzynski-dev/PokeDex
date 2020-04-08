@@ -16,12 +16,13 @@ import AlamofireImage
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchPokemonSearchBar: UISearchBar!
     
     @IBOutlet weak var image: UIImageView!
-    var pokemonAdressList: [PokemonAdress] = []
+    var pokemonAdressList: [PokemonModel] = []
     var isFetchingNewPokemons = false
     
-    let numberOfLoadPokemons = 20
+    let numberOfLoadPokemons = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,7 @@ class ListViewController: UIViewController {
                     for result in results{
                         if let url = result["url"].string, let name = result["name"].string{
                             let pokeID = self.pokemonAdressList.count + 1
-                            let pokemonAdress = PokemonAdress(urlAdress: url, pokemonName: name, pokemonID: pokeID)
+                            let pokemonAdress = PokemonModel(urlAdress: url, pokemonName: name, pokemonID: pokeID)
                             self.pokemonAdressList.append(pokemonAdress)
                             self.fetchPokemonInfo(pokemonID: pokeID, pokemonName: name)
                         }
@@ -180,8 +181,6 @@ extension ListViewController: UITableViewDataSource{
         return cell
     }
     
-    
-    
 }
 
 //MARK: Table View Delegate Extension
@@ -189,17 +188,18 @@ extension ListViewController: UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(pokemonAdressList[indexPath.row].pokemonName)
-        performSegue(withIdentifier: K.detailSeques, sender: self)
+        let detaiVC = storyboard?.instantiateViewController(withIdentifier: K.DetailStoryBoard) as? DatailViewController
+        detaiVC?.pokemon = pokemonAdressList[indexPath.row]
+        self.navigationController?.pushViewController(detaiVC!, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         
         let cellRotation = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
         cell.layer.transform = cellRotation
         cell.alpha = 0.0
-        
         
         UIView.animate(withDuration: 0.15) {
             cell.layer.transform = CATransform3DIdentity
