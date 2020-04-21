@@ -40,12 +40,16 @@ class ListViewController: UIViewController {
     func assignbackground(){
         let background = UIImage(named: "pokeball_crop")
 
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
+        let imageView : UIImageView = {
+            var img = UIImageView()
+            img = UIImageView(frame: view.bounds)
+            img.contentMode =  .scaleAspectFill
+            img.clipsToBounds = true
+            img.image = background
+            img.center = view.center
+            return img
+        }()
+        
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
