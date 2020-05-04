@@ -8,7 +8,7 @@ Pokedex app prepared for iOS devices, by using Swift 5.
   - Searching specified pokemon
   - Getting information of general iformations, stats, evolutions and defense multiplier
 
-### Used Cocoapods
+# Used Cocoapods
 
 List of used Cocoapods libraries:
 
