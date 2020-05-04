@@ -12,52 +12,73 @@ import SwiftyJSON
 import Alamofire
 import AlamofireImage
 
-
 class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchPokemonSearchBar: UISearchBar!
+    @IBOutlet weak var searchButton: UIButton!
     
-    @IBOutlet weak var image: UIImageView!
     var pokemonAdressList: [PokemonModel] = []
     var isFetchingNewPokemons = false
     
     let numberOfLoadPokemons = 100
+    var pokemonNamesList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        assignbackground()
+        fetchPokemonNames()
+        
         tableView.backgroundColor = .clear
         
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIndentifier)
+        
+        //Register Loading Cell
+        let tableViewLoadingCellNib = UINib(nibName: "LoadingCell", bundle: nil)
+        self.tableView.register(tableViewLoadingCellNib, forCellReuseIdentifier: "loadingcellid")
+        
         fetchPokemonList(from: 0, to: numberOfLoadPokemons)
+        searchButton.backgroundColor = UIColor(named: "searchButtonColor")
+        searchButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        searchButton.layer.cornerRadius = searchButton.frame.width/2
+        searchButton.layer.shadowColor = UIColor.black.cgColor
+        searchButton.layer.shadowOpacity = 0.75
+        searchButton.layer.shadowOffset = .zero
+        searchButton.layer.shadowRadius = 5
+        searchButton.layer.masksToBounds = false
+        
+        showSpinner(onView: self.view)
+        
     }
     
-    func assignbackground(){
-        let background = UIImage(named: "pokeball_crop")
-
-        let imageView : UIImageView = {
-            var img = UIImageView()
-            img = UIImageView(frame: view.bounds)
-            img.contentMode =  .scaleAspectFill
-            img.clipsToBounds = true
-            img.image = background
-            img.center = view.center
-            return img
-        }()
+    @IBAction func buttonClicked(_ sender: UIButton) {
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: K.SearchStoryBoard) as? SearchViewController
+        searchVC?.pokemonNamesList = pokemonNamesList
+        self.navigationController?.pushViewController(searchVC!, animated: false)
         
-        view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
     }
-
+    
+    func fetchPokemonNames(){
+        Alamofire.request("https://pokeapi.co/api/v2/pokemon?&limit=890&offset=0").responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if let results = json["results"].array{
+                    for result in results{
+                        if let name = result["name"].string{
+                            self.pokemonNamesList.append(name.capitalizingFirstLetter())
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     func fetchPokemonList(from: Int, to: Int){
-        
-        
         self.isFetchingNewPokemons = true
         
         Alamofire.request("https://pokeapi.co/api/v2/pokemon?&limit=\(to)&offset=\(from)").responseJSON { response in
@@ -76,7 +97,6 @@ class ListViewController: UIViewController {
                             print("ERRROR")
                         }
                     }
-                                        
                     
                 }
             case .failure(let error):
@@ -96,14 +116,16 @@ class ListViewController: UIViewController {
                 if let image = UIImage(data: value.pngData()!, scale: 0.5){
                     self.pokemonAdressList[pokemonID-1].pokemonImage = image
                 }
-                if self.checkIfPokemonInfoFull(){
-                    DispatchQueue.main.async {
+                
+                DispatchQueue.main.async {
+                    if self.checkIfPokemonInfoFull(){
                         self.tableView.reloadData()
                     }
                 }
                 
             case .failure(let error):
                 print(error)
+                self.pokemonAdressList[pokemonID-1].pokemonImage = UIImage(named: "pokeball")!
             }
         }
         //        Getting pokemon type and id
@@ -123,14 +145,11 @@ class ListViewController: UIViewController {
                     let pokomonTypeList = sortedDictOfPokemonTypes.map { return $0.value }
                     self.pokemonAdressList[pokemonID-1].pokemonTypesList = pokomonTypeList
                 }
-                if self.checkIfPokemonInfoFull(){
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    if self.checkIfPokemonInfoFull(){
                         self.tableView.reloadData()
                     }
                 }
-                
-                
-                
             case .failure(let error):
                 print(error)
             }
@@ -147,6 +166,7 @@ class ListViewController: UIViewController {
         }
         if numberOfFullyLoadedPokemons == pokemonAdressList.count{
             isFetchingNewPokemons = false
+            removeSpinner()
             return true
         }else{
             return false
@@ -160,29 +180,57 @@ extension ListViewController: UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let pokemonCellsNumber = pokemonAdressList.count
-        return pokemonCellsNumber
+        //        let pokemonCellsNumber = pokemonAdressList.count
+        //        return pokemonCellsNumber
+        //
+        if section == 0 {
+            //Return the amount of items
+            return pokemonAdressList.count
+        } else if section == 1 {
+            //Return the Loading cell
+            return 1
+        } else {
+            //Return nothing
+            return 0
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell  = tableView.dequeueReusableCell(withIdentifier: K.cellIndentifier, for: indexPath) as! PokemonCell
-        
-        let pokemonObject = pokemonAdressList[indexPath.row]
-        
-        cell.PokemonName.text = pokemonObject.pokemonName.capitalizingFirstLetter()
-        cell.PokemonID.text = "\(pokemonObject.fullPokemonID())"
-        cell.PokemonImage.image = pokemonObject.pokemonImage
-        
-        cell.PokemonImage.layer.shadowColor = UIColor.black.cgColor
-        cell.PokemonImage.layer.shadowOpacity = 0.75
-        cell.PokemonImage.layer.shadowOffset = .zero
-        cell.PokemonImage.layer.shadowRadius = 5
-        
-        cell.setPokemonTypes(typesArray: pokemonObject.pokemonTypesList)
-        cell.Bubble.backgroundColor = UIColor(named: "\(pokemonObject.pokemonTypesList[0])")
-        
-        return cell
+        if indexPath.section == 0 {
+            let cell  = tableView.dequeueReusableCell(withIdentifier: K.cellIndentifier, for: indexPath) as! PokemonCell
+            
+            let pokemonObject = pokemonAdressList[indexPath.row]
+            
+            cell.PokemonName.text = pokemonObject.pokemonName.capitalizingFirstLetter()
+            cell.PokemonID.text = "\(pokemonObject.fullPokemonID())"
+            cell.PokemonImage.image = pokemonObject.pokemonImage
+            
+            cell.PokemonImage.layer.shadowColor = UIColor.black.cgColor
+            cell.PokemonImage.layer.shadowOpacity = 0.75
+            cell.PokemonImage.layer.shadowOffset = .zero
+            cell.PokemonImage.layer.shadowRadius = 5
+            cell.PokemonImage.layer.masksToBounds = false
+            
+            cell.setPokemonTypes(typesArray: pokemonObject.pokemonTypesList)
+            cell.Bubble.backgroundColor = UIColor(named: "\(pokemonObject.pokemonTypesList[0])")
+            
+            return cell
+        }
+            
+        else if pokemonAdressList.count == 0 {
+            let cell = UITableViewCell()
+            return cell
+        }
+            
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "loadingcellid", for: indexPath) as! LoadingCell
+            cell.rotate()
+            return cell
+        }
     }
     
 }
@@ -192,32 +240,75 @@ extension ListViewController: UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detaiVC = storyboard?.instantiateViewController(withIdentifier: K.DetailStoryBoard) as? DatailViewController
-        detaiVC?.pokemon = pokemonAdressList[indexPath.row]
-        self.navigationController?.pushViewController(detaiVC!, animated: true)
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: K.DetailStoryBoard) as? DatailViewController
+        detailVC?.pokemon = pokemonAdressList[indexPath.row]
+        self.navigationController?.pushViewController(detailVC!, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        
-        let cellRotation = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-        cell.layer.transform = cellRotation
-        cell.alpha = 0.0
-        
-        UIView.animate(withDuration: 0.15) {
-            cell.layer.transform = CATransform3DIdentity
-            cell.alpha = 1.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section != 0 {
+            return 55
+        }else{
+            return tableView.rowHeight
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentSize.height - scrollView.contentOffset.y - scrollView.frame.height < 100 {
-            if !isFetchingNewPokemons{
-                fetchPokemonList(from: pokemonAdressList.count, to: numberOfLoadPokemons)
-            }
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if (offsetY > contentHeight - scrollView.frame.height) && !isFetchingNewPokemons{
+            fetchPokemonList(from: pokemonAdressList.count, to: numberOfLoadPokemons)
+            //            isFetchingNewPokemons = true
         }
+        
+        //        if scrollView.contentSize.height - scrollView.contentOffset.y - scrollView.frame.height < 100 {
+        //            if !isFetchingNewPokemons{
+        //                fetchPokemonList(from: pokemonAdressList.count, to: numberOfLoadPokemons)
+        //            }
+        //        }
     }
     
 }
 
+var vSpinner : UIView?
+
+extension UIViewController {
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+
+        DispatchQueue.main.async {
+            let loadingImage: UIImageView = {
+                let imageView = UIImageView(image: UIImage(named: "pokeball"))
+                let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+                rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
+                rotationAnimation.duration = 0.5;
+                rotationAnimation.isCumulative = true;
+                rotationAnimation.repeatCount = .infinity;
+                imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
+                imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+                imageView.center = spinnerView.center
+                imageView.alpha = 0.7
+                return imageView
+            }()
+            
+            spinnerView.addSubview(loadingImage)
+            onView.addSubview(spinnerView)
+        }
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
+    }
+}

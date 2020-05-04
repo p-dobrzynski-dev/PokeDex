@@ -11,6 +11,10 @@ import UIKit
 class EvolutionView: UIView {
 
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var pokemonNamesStackView: UIStackView!
+    @IBOutlet weak var evolutionStackView: UIStackView!
+    @IBOutlet weak var levelsStackView: UIStackView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

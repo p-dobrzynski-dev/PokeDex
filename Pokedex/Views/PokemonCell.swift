@@ -42,28 +42,27 @@ class PokemonCell: UITableViewCell {
         for view in self.PokemoTypesStackView.subviews {
             view.removeFromSuperview()
         }
-        
         for pokemonType in typesArray{
             
             let typeLabel = UILabel()
+            typeLabel.sizeToFit()
             typeLabel.text = pokemonType.uppercased()
             typeLabel.layer.cornerRadius = 15
             typeLabel.font = UIFont.boldSystemFont(ofSize: 15)
             typeLabel.textAlignment = .center
-            typeLabel.widthAnchor.constraint(equalToConstant: self.frame.width/5).isActive = true
+            typeLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+            typeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
             typeLabel.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
             typeLabel.layer.borderWidth = 3
-
-//            let typeView = PokemonTypeView()
-//            typeView.fillView.backgroundColor = UIColor(named: pokemonType)
-//            typeView.typeNameLabel.text = pokemonType
             typeLabel.textColor = .white
             typeLabel.layer.backgroundColor = UIColor.white.withAlphaComponent(0.3).cgColor
-            
             PokemoTypesStackView.addArrangedSubview(typeLabel)
         }
-        PokemoTypesStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        let tempView = UIView()
+        PokemoTypesStackView.addArrangedSubview(tempView)
+        PokemoTypesStackView.translatesAutoresizingMaskIntoConstraints = false
+
     }
     
 }

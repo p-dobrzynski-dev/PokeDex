@@ -10,7 +10,16 @@ import UIKit
 
 class GeneralView: UIView {
     
+    
+    @IBOutlet weak var categoryValueLabel: UILabel!
+    @IBOutlet weak var abiblitiesValueLabel: UILabel!
+    @IBOutlet weak var heightValueLabel: UILabel!
+    @IBOutlet weak var weightValueLabel: UILabel!
+    @IBOutlet weak var genderRateValueLabel: UILabel!
+    @IBOutlet weak var eggGroupsValueLabel: UILabel!
+    @IBOutlet weak var infoValueLabel: UILabel!
     @IBOutlet var contentView: UIView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -26,6 +35,11 @@ class GeneralView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        print("AAS")
+    }
 }

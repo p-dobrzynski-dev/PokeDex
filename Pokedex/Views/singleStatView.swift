@@ -36,7 +36,7 @@ class singleStatView: UIView {
     
     public func setStatValue(value: Int) {
         statValueLabel.text = "\(value)"
-        let progressValue = Float(value)/100.0
+        let progressValue = Float(value)/255.0
         statValueProgressView.setProgress(progressValue, animated: true)
     }
     

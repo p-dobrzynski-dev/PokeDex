@@ -9,7 +9,6 @@ target 'Pokedex' do
   pod 'Alamofire', '~> 4.9'
   pod 'AlamofireImage', '~> 3.5'
   pod 'SwiftyJSON'
-  pod 'TinyConstraints', '~> 4.0.1'
   pod 'BetterSegmentedControl', '~> 1.3'
 
 end
