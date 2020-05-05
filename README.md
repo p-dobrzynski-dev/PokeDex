@@ -2,6 +2,8 @@
 
 Pokedex app prepared for iOS devices, by using Swift 5.
 
+![](capture.gif)
+
 # Features!
 
   - Getting list of pokemons
