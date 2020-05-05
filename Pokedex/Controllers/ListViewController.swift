@@ -23,8 +23,12 @@ class ListViewController: UIViewController {
     let numberOfLoadPokemons = 100
     var pokemonNamesList = [String]()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setCustomNavigationButton()
         
         fetchPokemonNames()
         
@@ -59,6 +63,8 @@ class ListViewController: UIViewController {
         self.navigationController?.pushViewController(searchVC!, animated: false)
         
     }
+    
+    
     
     func fetchPokemonNames(){
         Alamofire.request("https://pokeapi.co/api/v2/pokemon?&limit=890&offset=0").responseJSON { response in
@@ -283,7 +289,7 @@ extension UIViewController {
     func showSpinner(onView : UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-
+        
         DispatchQueue.main.async {
             let loadingImage: UIImageView = {
                 let imageView = UIImageView(image: UIImage(named: "pokeball"))
@@ -310,5 +316,30 @@ extension UIViewController {
             vSpinner?.removeFromSuperview()
             vSpinner = nil
         }
+    }
+}
+
+extension UIViewController{
+    
+    func setCustomNavigationButton(){
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.setImage(UIImage(named:"arrow"), for: .normal)
+        menuBtn.addTarget(self, action: Selector(("back")), for: UIControl.Event.touchUpInside)
+        menuBtn.layer.shadowColor = UIColor.gray.cgColor
+        menuBtn.layer.shadowOpacity = 0.75
+        menuBtn.layer.shadowOffset = .zero
+        menuBtn.layer.shadowRadius = 3
+        menuBtn.layer.masksToBounds = false
+        
+        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+        let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 35)
+        currWidth?.isActive = true
+        let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 35)
+        currHeight?.isActive = true
+        self.navigationItem.leftBarButtonItem = menuBarItem
+    }
+    
+    @objc private func back(){
+        self.navigationController?.popViewController(animated: true)
     }
 }

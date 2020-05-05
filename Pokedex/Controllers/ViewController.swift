@@ -15,6 +15,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var pokeballImage: UIImageView!
     @IBOutlet weak var startButton: UIButton!
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = .red
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

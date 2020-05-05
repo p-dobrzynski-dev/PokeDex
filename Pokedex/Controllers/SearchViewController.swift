@@ -24,6 +24,9 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: Selector(("back")))
+        self.navigationItem.leftBarButtonItem = cancelButton
+        
         // Do any additional setup after loading the view.
         searchBar.becomeFirstResponder()
         
@@ -35,6 +38,10 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         pokemonModel = PokemonModel()
+    }
+    
+    @objc private func back(){
+        self.navigationController?.popViewController(animated: true)
     }
     
     

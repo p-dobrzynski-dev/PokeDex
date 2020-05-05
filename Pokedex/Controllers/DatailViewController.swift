@@ -69,8 +69,8 @@ class DatailViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        bottomViewTopConstraint.constant = view.bounds.height * 0.35
+        setCustomNavigationButton()
+        bottomViewTopConstraint.constant = view.bounds.height * 0.35
         
         bottomView.layer.cornerRadius = 30
         bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

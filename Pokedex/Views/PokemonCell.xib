@@ -47,7 +47,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="HKz-M3-SJ0">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HKz-M3-SJ0">
                                         <rect key="frame" x="157" y="0.0" width="202" height="100"/>
                                     </stackView>
                                 </subviews>
