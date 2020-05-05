@@ -9,14 +9,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatsView" customModule="Pokedex" customModuleProvider="target">
             <connections>
-                <outlet property="attackStatView" destination="aeN-mj-Mqb" id="L8l-1o-iB7"/>
+                <outlet property="attackValueLabel" destination="bCK-vm-lzQ" id="snS-TR-Wg6"/>
+                <outlet property="attackValueProgressView" destination="5wx-kT-5b9" id="p11-iA-kYs"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="oGC-Dt-Psb"/>
-                <outlet property="defenseStatView" destination="h4f-Zo-b7B" id="baz-hT-bpG"/>
-                <outlet property="hpStatView" destination="ab7-kd-dj8" id="OxX-3i-2QE"/>
-                <outlet property="speedAtkStatView" destination="fO3-LX-6mQ" id="ieS-ej-MCd"/>
-                <outlet property="speedDefStatView" destination="1RE-UG-d0s" id="a1i-fI-SxM"/>
-                <outlet property="speedStatView" destination="hno-ks-mNz" id="bJ4-tY-58T"/>
-                <outlet property="totalStatView" destination="gwC-g5-NoC" id="m13-2S-xC6"/>
+                <outlet property="defenseValueLabel" destination="yhi-Ht-Wzi" id="8Z6-Df-hlp"/>
+                <outlet property="defenseValueProgressView" destination="Gf0-99-t4c" id="ML0-RS-5hy"/>
+                <outlet property="hpValueLabel" destination="zpr-mf-jgE" id="6dn-UL-cOa"/>
+                <outlet property="hpValueProgressView" destination="mrf-Gy-1Bh" id="XWI-9e-8zx"/>
+                <outlet property="specialAttackValueLabel" destination="Ucb-Fp-ACo" id="hhw-F9-WRd"/>
+                <outlet property="specialAttackValueProgressView" destination="Ynh-wS-U9A" id="Wtd-8Z-aza"/>
+                <outlet property="specialDefenseValueLabel" destination="klx-1m-qNO" id="DiI-oz-CCS"/>
+                <outlet property="specialDefenseValueProgressView" destination="ClR-IM-kjU" id="1wE-Pe-2hJ"/>
+                <outlet property="speedValueLabel" destination="boB-Xr-uQW" id="4JF-jn-Bv5"/>
+                <outlet property="speedValueProgressView" destination="VmG-sE-JUv" id="HdP-IC-dZS"/>
+                <outlet property="totalValueLabel" destination="q7P-FR-yP6" id="9ad-ZC-Rr9"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,34 +33,189 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-id-kaX">
                     <rect key="frame" x="0.0" y="44" width="422" height="235"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ab7-kd-dj8" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9Fa-1X-ruw">
                             <rect key="frame" x="0.0" y="0.0" width="422" height="16.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeN-mj-Mqb" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sN-6A-ov6">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="mmi-Z1-idB"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpr-mf-jgE">
+                                    <rect key="frame" x="80" y="0.0" width="30" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="V2W-uu-urs"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mrf-Gy-1Bh">
+                                    <rect key="frame" x="115" y="0.0" width="307" height="16.5"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mWu-pr-XBN">
                             <rect key="frame" x="0.0" y="36.5" width="422" height="16.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4f-Zo-b7B" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-tf-Hxf">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="gCf-vl-IWp"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCK-vm-lzQ">
+                                    <rect key="frame" x="80" y="0.0" width="30" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="0Gk-Vy-rny"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5wx-kT-5b9">
+                                    <rect key="frame" x="115" y="0.0" width="307" height="16.5"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="X3E-Uh-JLj">
                             <rect key="frame" x="0.0" y="73" width="422" height="16.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fO3-LX-6mQ" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Defense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ko-M6-mgy">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="F1L-aP-lDd"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhi-Ht-Wzi">
+                                    <rect key="frame" x="80" y="0.0" width="30" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="7Fu-KQ-fja"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gf0-99-t4c">
+                                    <rect key="frame" x="115" y="0.0" width="307" height="16.5"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ijB-y9-vmu">
                             <rect key="frame" x="0.0" y="109.5" width="422" height="16"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RE-UG-d0s" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sp. Atk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdZ-Td-yFH">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="fTd-JZ-bzA"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucb-Fp-ACo">
+                                    <rect key="frame" x="80" y="0.0" width="30" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="8gr-8w-12G"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ynh-wS-U9A">
+                                    <rect key="frame" x="115" y="0.0" width="307" height="16"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ICd-ZC-3HY">
                             <rect key="frame" x="0.0" y="145.5" width="422" height="16.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hno-ks-mNz" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sp. Def" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKh-bp-yoQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="IxD-by-mOW"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klx-1m-qNO">
+                                    <rect key="frame" x="80" y="0.0" width="30" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="uNX-pj-GN8"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ClR-IM-kjU">
+                                    <rect key="frame" x="115" y="0.0" width="307" height="16.5"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="23A-yl-ne9">
                             <rect key="frame" x="0.0" y="182" width="422" height="16.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwC-g5-NoC" customClass="singleStatView" customModule="Pokedex" customModuleProvider="target">
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXu-Lp-y0S">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="DsD-nD-MCr"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boB-Xr-uQW">
+                                    <rect key="frame" x="80" y="0.0" width="30" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="Jlc-MG-mUd"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VmG-sE-JUv">
+                                    <rect key="frame" x="115" y="0.0" width="307" height="16.5"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RQR-Ye-i9i">
                             <rect key="frame" x="0.0" y="218.5" width="422" height="16.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        </view>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKh-xu-TGq">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="8VD-fk-2E8"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Val" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7P-FR-yP6">
+                                    <rect key="frame" x="80" y="0.0" width="100" height="16.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="Uv5-By-oZG"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSQ-iH-sDZ">
+                                    <rect key="frame" x="185" y="0.0" width="237" height="16.5"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </subviews>
+                        </stackView>
                     </subviews>
                 </stackView>
             </subviews>

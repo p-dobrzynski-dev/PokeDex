@@ -20,10 +20,6 @@ struct PokemonModel {
         let fullID = "#\(String(format: "%03d", pokemonID ))"
         return fullID
     }
-    
-    func getSortedPokemonTypesListNames(){
-        
-    }
 }
 
 extension String {

@@ -153,24 +153,11 @@ class DatailViewController: UIViewController{
             case .success(let value):
                 let json = JSON(value)
                 
-                var stats = Stats()
+                var stats: [String:Int] = [String:Int]()
                 if let statsList = json["stats"].array{
                     for stat in statsList{
-                        switch stat["stat"]["name"] {
-                        case "speed":
-                            stats.speed = stat["base_stat"].int!
-                        case "special-defense":
-                            stats.specialDefense = stat["base_stat"].int!
-                        case "special-attack":
-                            stats.specialAttack = stat["base_stat"].int!
-                        case "defense":
-                            stats.defense = stat["base_stat"].int!
-                        case "attack":
-                            stats.attack = stat["base_stat"].int!
-                        case "hp":
-                            stats.hp = stat["base_stat"].int!
-                        default:
-                            print("Couldnt find stat")
+                        if let statName = stat["stat"]["name"].string{
+                            stats[statName] = stat["base_stat"].int!
                         }
                     }
                 }
@@ -209,10 +196,10 @@ class DatailViewController: UIViewController{
                 
                 
                 DispatchQueue.main.async {
-                    self.updateStats(statsStruct: stats)
                     self.generalView.weightValueLabel.text = "\(Float(weight)/10) kg"
                     self.generalView.heightValueLabel.text = "\(Float(height)/10) m"
                     self.generalView.abiblitiesValueLabel.text = abibilitesText
+                    self.statsView.updateStats(detailDict: stats)
                 }
                 
             case .failure(let error):
@@ -523,16 +510,6 @@ class DatailViewController: UIViewController{
         }
         
     }
-    
-    private func updateStats(statsStruct: Stats){
-        statsView.updateHp(value: statsStruct.hp)
-        statsView.updateSpeed(value: statsStruct.speed)
-        statsView.updateAttack(value: statsStruct.attack)
-        statsView.updateDefense(value: statsStruct.defense)
-        statsView.updateSpecialAttack(value: statsStruct.specialAttack)
-        statsView.updateSpecialDefense(value: statsStruct.specialDefense)
-    }
-    
     
     private func addSemgnetedControl(){
         

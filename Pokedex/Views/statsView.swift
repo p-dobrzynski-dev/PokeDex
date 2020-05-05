@@ -11,16 +11,22 @@ import UIKit
 class StatsView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var hpValueLabel: UILabel!
+    @IBOutlet weak var hpValueProgressView: UIProgressView!
+    @IBOutlet weak var attackValueLabel: UILabel!
+    @IBOutlet weak var attackValueProgressView: UIProgressView!
+    @IBOutlet weak var defenseValueLabel: UILabel!
+    @IBOutlet weak var defenseValueProgressView: UIProgressView!
+    @IBOutlet weak var specialAttackValueLabel: UILabel!
+    @IBOutlet weak var specialAttackValueProgressView: UIProgressView!
+    @IBOutlet weak var specialDefenseValueLabel: UILabel!
+    @IBOutlet weak var specialDefenseValueProgressView: UIProgressView!
+    @IBOutlet weak var speedValueLabel: UILabel!
+    @IBOutlet weak var speedValueProgressView: UIProgressView!
+    @IBOutlet weak var totalValueLabel: UILabel!
     
-    @IBOutlet weak var hpStatView: singleStatView!
-    @IBOutlet weak var attackStatView: singleStatView!
-    @IBOutlet weak var defenseStatView: singleStatView!
-    @IBOutlet weak var speedAtkStatView: singleStatView!
-    @IBOutlet weak var speedDefStatView: singleStatView!
-    @IBOutlet weak var speedStatView: singleStatView!
-    @IBOutlet weak var totalStatView: singleStatView!
     
-    var statsList: [singleStatView] = []
+    var statsDict: [String:(label: UILabel, progressView: UIProgressView)] = [String:(label: UILabel, progressView: UIProgressView)]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,53 +44,30 @@ class StatsView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        hpStatView.statNameLabel.text = "HP"
-        attackStatView.statNameLabel.text = "Attack"
-        defenseStatView.statNameLabel.text = "Defense"
-        speedAtkStatView.statNameLabel.text = "Sp. Atk"
-        speedDefStatView.statNameLabel.text = "Sp. Def"
-        speedStatView.statNameLabel.text = "Speed"
-        totalStatView.statNameLabel.text = "Total"
+        statsDict["hp"] = (label: hpValueLabel, progressView: hpValueProgressView)
+        statsDict["special-defense"] = (label: specialDefenseValueLabel, progressView: specialDefenseValueProgressView)
+        statsDict["special-attack"] = (label: specialAttackValueLabel, progressView: specialAttackValueProgressView)
+        statsDict["defense"] = (label: defenseValueLabel, progressView: defenseValueProgressView)
+        statsDict["attack"] = (label: attackValueLabel, progressView: attackValueProgressView)
+        statsDict["speed"] = (label: speedValueLabel, progressView: speedValueProgressView)
         
-        statsList = [hpStatView,attackStatView,defenseStatView,speedAtkStatView,speedDefStatView,speedStatView,totalStatView]
     }
     
     public func setStatsColor(color: UIColor){
-        for stat in statsList{
-            stat.setProgressViewColor(color: color)
+        for stat in statsDict{
+            stat.value.progressView.tintColor = color
+            stat.value.progressView.layer.cornerRadius = 10
+            stat.value.progressView.clipsToBounds = true
         }
     }
     
-    public func updateHp(value: Int){
-        hpStatView.setStatValue(value: value)
-    }
-    
-    public func updateSpeed(value: Int){
-        speedStatView.setStatValue(value: value)
-        
-    }
-    
-    public func updateAttack(value: Int){
-        attackStatView.setStatValue(value: value)
-        
-    }
-    
-    public func updateDefense(value: Int){
-        defenseStatView.setStatValue(value: value)
-        
-    }
-    
-    public func updateSpecialDefense(value: Int){
-        speedDefStatView.setStatValue(value: value)
-        
-    }
-    
-    public func updateSpecialAttack(value: Int){
-        speedAtkStatView.setStatValue(value: value)
-        
-    }
-    
-    public func updateTotal(value: Int){
-        totalStatView.setStatValue(value: value)
+    public func updateStats(detailDict: [String:Int]){
+        var total: Int = 0
+        for stat in detailDict{
+            total += stat.value
+            statsDict[stat.key]?.label.text = "\(stat.value)"
+            statsDict[stat.key]?.progressView.setProgress(Float(stat.value)/255.0, animated: false)
+        }
+        totalValueLabel.text = "\(total)"
     }
 }
