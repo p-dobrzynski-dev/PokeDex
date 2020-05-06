@@ -1,6 +1,6 @@
 # Pokedex (Swift 5)
 
-Pokedex app prepared for iOS devices, by using Swift 5.
+Pokedex app prepared for iOS devices, by using Swift 5. Application is based on RESTful pokemon API (https://pokeapi.co/)
 
 ![](capture.gif)
 
