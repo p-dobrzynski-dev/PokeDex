@@ -2,13 +2,13 @@
 
 Pokedex app prepared for iOS devices, by using Swift 5. Application is based on RESTful pokemon API (https://pokeapi.co/)
 
-![](capture.gif)
-
 # Features!
 
   - Getting list of pokemons
   - Searching specified pokemon
   - Getting information of general iformations, stats, evolutions and defense multiplier
+
+![](capture.gif)
 
 # Used Cocoapods
 
